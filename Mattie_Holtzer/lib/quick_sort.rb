@@ -24,8 +24,8 @@ class QuickSort
     pivot = array[start]
     counter = 1
     pivpos = start
-    while counter<length+1
-      if pivot>array[start+counter]
+    while counter<length
+      if pivot>=array[start+counter]
         array[pivpos], array[counter+start] = array[counter+start], pivot
         pivpos = counter+start
         counter+=1
