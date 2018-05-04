@@ -24,11 +24,12 @@ class QuickSort
   end
 
   def self.partition(array, start, length, &prc)
+    prc ||= Proc.new{|a,b| a<=>b}
     pivot = array[start]
     counter = 1
     pivpos = start
     while counter<length
-      if pivot>=array[start+counter]
+      if prc.call(pivot,array[start+counter])>=0
         array[pivpos], array[counter+start] = array[counter+start], pivot
         pivpos = counter+start
         counter+=1
