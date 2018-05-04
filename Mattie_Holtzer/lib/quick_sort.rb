@@ -21,5 +21,19 @@ class QuickSort
   end
 
   def self.partition(array, start, length, &prc)
+    pivot = array[start]
+    counter = 1
+    pivpos = start
+    while counter<length+1
+      if pivot>array[start+counter]
+        array[pivpos], array[counter+start] = array[counter+start], pivot
+        pivpos = counter+start
+        counter+=1
+      else
+        array[start+counter], array[start+length-1] = array[start+length-1], array[counter+start]
+        length-=1
+      end
+    end
+    pivpos
   end
 end
