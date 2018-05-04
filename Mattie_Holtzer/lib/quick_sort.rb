@@ -17,7 +17,10 @@ class QuickSort
 
   # In-place.
   def self.sort2!(array, start = 0, length = array.length, &prc)
-    QuickSort.sort1(array)
+    return if length<=1
+    pivpos = QuickSort.partition(array, start, length, &prc)
+    QuickSort.sort2!(array, start, pivpos-start, &prc)
+    QuickSort.sort2!(array, pivpos+1, length-(pivpos-start)-1, &prc)
   end
 
   def self.partition(array, start, length, &prc)
