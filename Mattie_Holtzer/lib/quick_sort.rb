@@ -41,3 +41,22 @@ class QuickSort
     pivpos
   end
 end
+
+def merge_ints(arrs)
+  prc = Proc.new{|a,b| a[0] <=> b[0]}
+  QuickSort.sort2!(arrs, 0, arrs.length, &prc)
+  counter = 0
+  ret = []
+  while counter<arrs.length-1
+    print ret
+    temp = arrs[counter]
+    while counter<arrs.length-1 && temp[1] >= arrs[counter+1][0]
+      temp[1] = arrs[counter+1][1] unless temp[1]>arrs[counter+1][1]
+      counter+=1
+    end
+    ret.push(temp)
+    counter+=1
+    ret.push(arrs[counter]) if counter==arrs.length-1
+  end
+  ret
+end
